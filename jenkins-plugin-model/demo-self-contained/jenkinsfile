@@ -11,12 +11,8 @@ pipeline {
         stage('Install Docker Engine CE') {
             steps {
                 sh '''
-                    sudo apt-get update
-                    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-                    curl -fsSl https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyrings.gpg
-                    echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyrings.gpg] https://download.docker.com/linux/ubuntu/gpg
-                    sudo apt-get update
-                    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+                    curl -fsSL https://get.docker.sh
+                    sudo -sh get-docker.sh
                     sudo systemctl start docker
                     sudo systemctl enable docker
                     sudo systemctl status docker
